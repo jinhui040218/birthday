@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Garamond, serif;
+            background: lightpink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-size: 20px;
+            margin: 20px;
+            padding: 20px;
+        }
+        form {
+            background-color: lightgreen;
+            color: black;
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid blue;
+        }
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+        input::placeholder {
+            color: gray;
+        }
+        input[type="tel"] {
+            direction: ltr;
+        }
+        input:hover, select:hover {
+            border-color: #667eea;
+        }
+        option:hover {
+            background-color: #667eea;
+            color: white;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 请将 action 中的 "/f/xyz" 替换为您的 Formspree 实际表单ID -->
+    <form method="POST" action="https://formspree.io/f/xyz">
+        <input type="hidden" name="_next" value="https://jinhui040218.github.io/birthday/button.html">
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Full Name" required>
+
+        <label for="birthday">Birthday</label>
+        <input type="date" id="birthday" name="birthday" required>
+
+        <label for="time">Time</label>
+        <input type="time" id="time" name="time">
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+60">
+
+        <label for="zodiac">Choose Your Zodiac</label>
+        <select name="zodiac" id="zodiac" required>
+            <option value="" disabled selected hidden>Select your zodiac</option>
+            <option value="aries">Aries (21 March - 20 April)</option>
+            <option value="taurus">Taurus (21 April - 20 May)</option>
+            <option value="gemini">Gemini (21 May - 20 June)</option>
+            <option value="cancer">Cancer (21 June - 22 July)</option>
+            <option value="leo">Leo (23 July - 22 August)</option>
+            <option value="virgo">Virgo (23 August - 22 September)</option>
+            <option value="libra">Libra (23 September - 22 October)</option>
+            <option value="scorpio">Scorpio (23 October - 21 November)</option>
+            <option value="sagittarius">Sagittarius (22 November - 21 December)</option>
+            <option value="capricorn">Capricorn (23 December - 19 January)</option>
+            <option value="aquarius">Aquarius (20 January - 18 February)</option>
+            <option value="pisces">Pisces (19 February - 20 March)</option>
+        </select>
+
+        <label for="gender">Choose your gender</label>
+        <select name="gender" id="gender">
+            <option value="" disabled selected hidden>Choose your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+
+        <label for="university">University</label>
+        <input type="text" id="university" name="university">
+
+        <label for="course">Course</label>
+        <input type="text" id="course" name="course">
+
+        <label for="education">Education</label>
+        <select name="education" id="education">
+            <option value="diploma">Diploma</option>
+            <option value="bachelor">Bachelor</option>
+            <option value="master">Master</option>
+            <option value="doctorate">Doctorate</option>
+        </select>
+
+        <input type="submit" formaction="button.html" value="Submit">
+    </form>
+</body>
+</html>
