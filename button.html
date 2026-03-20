@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <style>
+        body {
+            background-color: lightyellow;
+            font-size: 25px;
+            text-align: center;
+            font-family: 'Garamond', serif;
+            padding: 20px;
+        }
+        input[type="button"] {
+            border: none;
+            padding: 15px 32px;
+            font-size: 16px;
+            margin: 4px 2px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 12px;
+            background-color: #f0f0f0;
+            transition: 0.2s;
+        }
+        input[type="button"]:hover {
+            background-color: lightgreen;
+            transform: scale(1.02);
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .birthday-text {
+            animation: fadeBounce 1s ease;
+            font-size: 2em;
+            font-weight: bold;
+            color: #d44c2f;
+            margin: 20px 0;
+        }
+        .birthday-img {
+            display: block;
+            margin: 20px auto;
+            width: 400px;
+            height: 400px;
+            animation: pop 0.8s ease;
+        }
+        @keyframes fadeBounce {
+            0% { opacity: 0; transform: translateY(-20px); }
+            60% { opacity: 1; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            80% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+    <script>
+        function myfunction(txt) {
+            let demo = document.getElementById("demo");
+            demo.innerHTML = "";   // 清空之前内容
+
+            let text = document.createElement("p");
+            text.className = "birthday-text";
+            text.innerHTML = txt;
+            demo.appendChild(text);
+
+            let img = document.createElement('img');
+            img.src = 'https://i.pinimg.com/736x/c8/22/80/c82280ef63deece3525e41ac6ac8206a.jpg';
+            img.alt = 'Birthday Cake';
+            img.className = "birthday-img";
+            demo.appendChild(img);
+        }
+    </script>
+</head>
+<body>
+    <p>Please "Click"</p>
+    <form>
+        <input type="button" onclick="myfunction('Happy Birthday! 🎂')" value="Click">
+    </form>
+    <div id="demo"></div>
+</body>
+</html>
