@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submission History</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Your Previous Submissions</h1>
+    <div id="history"></div>
+    <script>
+        const fields = ['name', 'birthday', 'time', 'phone', 'zodiac', 'gender', 'email', 'university', 'course', 'education', 'timestamp'];
+        const history = JSON.parse(localStorage.getItem('submissions')) || [];
+        if (history.length === 0) {
+            document.getElementById('history').innerHTML = '<p>No submissions yet.</p>';
+        } else {
+            let table = '<table><tr>';
+            fields.forEach(f => table += `<th>${f}</th>`);
+            table += '</tr>';
+            history.forEach(sub => {
+                table += '<tr>';
+                fields.forEach(f => table += `<td>${sub[f] || ''}</td>`);
+                table += '</tr>';
+            });
+            table += '</table>';
+            document.getElementById('history').innerHTML = table;
+        }
+    </script>
+</body>
+</html>
