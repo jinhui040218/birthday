@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .clear-btn {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .clear-btn:hover {
+            background-color: #d32f2f;
+        }
+        .info {
+            background: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 Past Submissions</h1>
+    <div class="info">
+        ℹ️ Submissions are stored only in this browser. Clearing your browser data will erase them.
+    </div>
+    <div id="history"></div>
+    <button class="clear-btn" onclick="clearHistory()">🗑️ Clear All History</button>
+
+    <script>
+        const fields = ['name', 'birthday', 'time', 'phone', 'zodiac', 'gender', 'email', 'university', 'course', 'education', 'timestamp'];
+
+        function renderHistory() {
+            const history = JSON.parse(localStorage.getItem('submissions')) || [];
+            const container = document.getElementById('history');
+
+            if (history.length === 0) {
+                container.innerHTML = '<p>No submissions yet.</p>';
+                return;
+            }
+
+            let table = '<table>';
+            // Header row
+            table += '<thead><tr>';
+            fields.forEach(f => table += `<th>${f}</th>`);
+            table += '</tr></thead><tbody>';
+
+            // Data rows
+            history.forEach(sub => {
+                table += '盘';
+                fields.forEach(f => {
+                    let value = sub[f] || '';
+                    // If it's a long text, truncate (optional)
+                    if (value.length > 100) value = value.substring(0, 100) + '…';
+                    table += `<td>${escapeHtml(value)}</td>`;
+                });
+                table += '</tr>';
+            });
+            table += '</tbody></table>';
+            container.innerHTML = table;
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to delete ALL submission history? This cannot be undone.')) {
+                localStorage.removeItem('submissions');
+                renderHistory();
+            }
+        }
+
+        // Helper to escape HTML to prevent injection
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+                return c;
+            });
+        }
+
+        renderHistory();
+    </script>
+</body>
+</html>
